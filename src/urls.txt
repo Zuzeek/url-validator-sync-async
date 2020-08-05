@@ -1,4 +1,4 @@
-https://httpstat.us/200?sleep=1000
+https://httpstat.us/200?sleep=5000
 https://httpstat.us/200?sleep=1000
 https://httpstat.us/200?sleep=1000
 https://httpstat.us/200?sleep=1000
@@ -7,6 +7,6 @@ https://httpstat.us/200?sleep=1000
 https://httpstat.us/200?sleep=1000
 https://httpstat.us/200?sleep=1000
 https://httpstat.us/500
-https://www.pluralsight.com
+https://pluralsight.com
 https://github.com
-https://www.homeessentials.co.uk
+https://homeessentials.co.uk

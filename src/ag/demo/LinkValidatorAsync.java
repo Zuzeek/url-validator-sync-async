@@ -8,6 +8,7 @@ import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -16,7 +17,14 @@ public class LinkValidatorAsync {
 	private static HttpClient client; 
 	
 	public static void main(String[] args) throws IOException {
-		client = HttpClient.newHttpClient(); 
+		/*
+		 * does not handle re-directs, so need to replace with newBuilder()
+		 * client = HttpClient.newHttpClient(); 
+		 */
+		client = HttpClient.newBuilder()
+					.connectTimeout(Duration.ofSeconds(3)) // set connection time out to 3s 
+					.followRedirects(HttpClient.Redirect.NORMAL) // handles re-direct behaviour 
+					.build(); 
 		
 		String url = "src/urls.txt";
 		
@@ -44,6 +52,7 @@ public class LinkValidatorAsync {
 	
 	private static CompletableFuture<String> validateLink(String link) {
 		HttpRequest request = HttpRequest.newBuilder(URI.create(link))
+				.timeout(Duration.ofSeconds(2)) // handles time outs
 				.GET()
 				.build(); 
 		
