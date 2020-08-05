@@ -39,8 +39,8 @@ public class LinkValidatorSync {
 		
 		try {
 			HttpResponse<Void> response = client.send(request, 
-					HttpResponse.BodyHandlers.discarding()); // body handler is responsible for turning from the Http server into a java object
-			return responseToString(response); 
+					HttpResponse.BodyHandlers.discarding()); // body handler is responsible for turning from the Http server into a java object, used discard, which will return empty body, which we're not interested in 
+			return responseToString(response); // we get back a response body, headers and status code 
 		}
 		catch (IOException | InterruptedException e) {
 			return String.format("%s -> %s", link, false); 
