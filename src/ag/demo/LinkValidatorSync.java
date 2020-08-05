@@ -14,7 +14,7 @@ public class LinkValidatorSync {
 	private static HttpClient client; 
 	
 	/*
-	 * storing as a static, so I do not need to recreate it every time, but can re-use it
+	 * storing as a static, so no need to recreate it every time, but can re-use it
 	 */
 	public static void main(String[] args) throws IOException {
 		client = HttpClient.newHttpClient(); 
@@ -39,7 +39,7 @@ public class LinkValidatorSync {
 		
 		try {
 			HttpResponse<Void> response = client.send(request, 
-					HttpResponse.BodyHandlers.discarding());
+					HttpResponse.BodyHandlers.discarding()); // body handler is responsible for turning from the Http server into a java object
 			return responseToString(response); 
 		}
 		catch (IOException | InterruptedException e) {
